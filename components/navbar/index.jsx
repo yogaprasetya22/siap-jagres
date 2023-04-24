@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-const navbar = ({ children, router }) => {
+const Navbar = ({ children, router }) => {
     const path = router;
     const [open, setOpen] = useState(true);
     return (
@@ -75,7 +74,7 @@ const navbar = ({ children, router }) => {
     );
 };
 
-export default navbar;
+export default Navbar;
 
 const SubSidebar = ({ open, path }) => {
     const [openOrganisasi, setOpenOrganisasi] = useState(false);
@@ -84,7 +83,7 @@ const SubSidebar = ({ open, path }) => {
     const [isDarkMode, setIsDarkMode] = useState(true);
     const { theme, setTheme, systemTheme } = useTheme();
     const current = theme === "system" ? systemTheme : theme;
-    
+
     useEffect(() => {
         current === "dark" ? setIsDarkMode(false) : setIsDarkMode(true);
     }, [current]);
@@ -437,8 +436,7 @@ const LinkItem = ({ href, path, children, icon, open }) => {
                 width={20}
                 height={20}
                 className={` ${
-                    activ
-                        ? "invert-0 dark:invert": "invert dark:invert-0"
+                    activ ? "invert-0 dark:invert" : "invert dark:invert-0"
                 }  ${!open && "hidden"}`}
             />
         </Link>
