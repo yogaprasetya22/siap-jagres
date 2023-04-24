@@ -1,72 +1,61 @@
-import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const Navbar = ({ children, router }) => {
+export default function Navbar({ children, router }) {
     const path = router;
     const [open, setOpen] = useState(true);
+
     return (
-        <div className="flex">
-            <div
-                className={`h-screen top-0 sticky transition-all ease-in-out delay-[25ms] ${
-                    open ? "w-[18rem]" : "w-0"
-                }`}
-            >
-                <div className="flex items-center h-screen bg-white">
-                    <div className="flex-1 ">
-                        <Image
-                            src="/assets/control.png"
-                            alt="Picture of the author"
-                            width={40}
-                            height={40}
-                            className={` hidden sm:block absolute z-[100] cursor-pointer  w-[2.5rem] border-gray-500 dark:border-gray-700
+        <div className="flex flex-row ">
+            <div className=" relative flex z-50 select-none">
+                <Image
+                    src="/assets/control.png"
+                    alt="Picture of the author"
+                    width={40}
+                    height={40}
+                    className={` hidden sm:block absolute z-[100] cursor-pointer  w-[2.5rem] border-gray-500 dark:border-gray-700
               border-2 rounded-full transition-all ease-in-out delay-[25ms] top-[45px] ${
                   !open && "rotate-180"
               } top-8 ${open ? "left-[16.5rem]" : "left-[3.3rem]"}`}
-                            onClick={() => setOpen(!open)}
-                        />
-                        <div
-                            className={` ${
-                                open
-                                    ? "w-72  pl-2"
-                                    : "w-0 sm:w-16 overflow-y-hidden "
-                            } bg-white dark:bg-gray-700 flex-1 duration-300 h-screen`}
-                        >
-                            <div
-                                className={` bg-white dark:bg-gray-700 p-0 pt-8 relative duration-300 `}
+                    onClick={() => setOpen(!open)}
+                />
+                <div
+                    className={` ${
+                        open ? "w-72  pl-2" : "w-0 sm:w-16 overflow-y-hidden "
+                    } bg-white dark:bg-gray-700 relative duration-300 h-screen`}
+                >
+                    <div
+                        className={` bg-white dark:bg-gray-700 p-0 pt-8 relative duration-300 `}
+                    >
+                        <div className="flex gap-x-4 items-center py-4 -mt-2 pl-2">
+                            <Image
+                                src="/assets/logo.png"
+                                alt="Picture of the author"
+                                width={40}
+                                height={40}
+                                className={`cursor-pointer duration-500 ${
+                                    open && "rotate-[360deg]"
+                                }`}
+                            />
+                            <h1
+                                className={` text-black dark:text-white origin-left font-medium text-xl duration-200 ${
+                                    !open && "scale-0"
+                                }`}
                             >
-                                <div className="flex gap-x-4 items-center py-4 -mt-2 pl-2">
-                                    <Image
-                                        src="/assets/logo.png"
-                                        alt="Picture of the author"
-                                        width={40}
-                                        height={40}
-                                        className={`cursor-pointer duration-500 ${
-                                            open && "rotate-[360deg]"
-                                        }`}
-                                    />
-                                    <h1
-                                        className={` text-black dark:text-white origin-left font-medium text-xl duration-200 ${
-                                            !open && "scale-0"
-                                        }`}
-                                    >
-                                        Siap jagres
-                                    </h1>
-                                </div>
-                            </div>
-
-                            <ul
-                                className={`${
-                                    open
-                                        ? "overflow-y-auto"
-                                        : "overflow-y-hidden"
-                                } max-h-[84vh]  overflow-x-hidden webkit-scroll p-2 `}
-                            >
-                                <SubSidebar open={open} path={path} />
-                            </ul>
+                                Siap Agile
+                            </h1>
                         </div>
                     </div>
+
+                    <ul
+                        className={`${
+                            open ? "overflow-y-auto" : "overflow-y-hidden"
+                        } max-h-[84vh]  overflow-x-hidden webkit-scroll p-2 `}
+                    >
+                        <SubSidebar open={open} path={path} />
+                    </ul>
                 </div>
             </div>
             <Image
@@ -75,17 +64,19 @@ const Navbar = ({ children, router }) => {
                 width={40}
                 height={40}
                 className={`  block sm:hidden absolute z-[100] cursor-pointer  w-[2.5rem] border-dark-purple
-           border-2 rounded-full transition-all ease-in-out delay-75 ${
+           border-2 rounded-full transition-all ease-out ${
                !open && "rotate-180"
-           } top-[45px] ${open ? "left-[16.5rem]" : "left-[.7rem]"}`}
+           } top-8 ${open ? "left-[16.5rem]" : "left-[.7rem]"}`}
                 onClick={() => setOpen(!open)}
             />
-            <div className="flex-grow p-[2rem] pt-[6rem]">{children}</div>
+            <div className="w-full max-h-[100vh]">
+                <div className="w-full h-[123.5rem] bg-red-200 dark:bg-gray-700 shadow-md">
+                    {children}
+                </div>
+            </div>
         </div>
     );
-};
-
-export default Navbar;
+}
 
 const SubSidebar = ({ open, path }) => {
     const [openOrganisasi, setOpenOrganisasi] = useState(false);
@@ -94,7 +85,6 @@ const SubSidebar = ({ open, path }) => {
     const [isDarkMode, setIsDarkMode] = useState(true);
     const { theme, setTheme, systemTheme } = useTheme();
     const current = theme === "system" ? systemTheme : theme;
-
     useEffect(() => {
         current === "dark" ? setIsDarkMode(false) : setIsDarkMode(true);
     }, [current]);
@@ -346,49 +336,103 @@ const SubSidebar = ({ open, path }) => {
                 >
                     Timeline Project/Task
                 </LinkItem>
-                <LinkItem
-                    path={path}
-                    open={open}
+                <Link
                     href="/laporan/progres-project"
-                    icon={"chat"}
+                    className="flex  justify-between bg-gray-100 dark:bg-gray-400 hover:bg-gray-200 rounded-md p-2 cursor-pointer  text-black text-sm items-center gap-x-4 mt-2 "
                 >
-                    Progres Project
-                </LinkItem>
-                <LinkItem
-                    path={path}
-                    open={open}
+                    <span
+                        className={`${
+                            !open && "hidden"
+                        } origin-left duration-200`}
+                    >
+                        Progres Project
+                    </span>
+                    <Image
+                        src="/assets/chat.png"
+                        alt="Picture of the author"
+                        width={20}
+                        height={20}
+                        className={`invert dark:invert-0 ${!open && "hidden"}`}
+                    />
+                </Link>
+                <Link
                     href="/laporan/progres-task"
-                    icon={"chat"}
+                    className="flex  justify-between bg-gray-100 dark:bg-gray-400 hover:bg-gray-200 rounded-md p-2 cursor-pointer  text-black text-sm items-center gap-x-4 mt-2 "
                 >
-                    Progres Task
-                </LinkItem>
-                <LinkItem
-                    path={path}
-                    open={open}
+                    <span
+                        className={`${
+                            !open && "hidden"
+                        } origin-left duration-200`}
+                    >
+                        Progres Task
+                    </span>
+                    <Image
+                        src="/assets/chat.png"
+                        alt="Picture of the author"
+                        width={20}
+                        height={20}
+                        className={`invert dark:invert-0 ${!open && "hidden"}`}
+                    />
+                </Link>
+                <Link
                     href="/laporan/kendala"
-                    icon={"chat"}
+                    className="flex  justify-between bg-gray-100 dark:bg-gray-400 hover:bg-gray-200 rounded-md p-2 cursor-pointer  text-black text-sm items-center gap-x-4 mt-2 "
                 >
-                    Kendala
-                </LinkItem>
-                <LinkItem
-                    path={path}
-                    open={open}
+                    <span
+                        className={`${
+                            !open && "hidden"
+                        } origin-left duration-200`}
+                    >
+                        Kendala
+                    </span>
+                    <Image
+                        src="/assets/chat.png"
+                        alt="Picture of the author"
+                        width={20}
+                        height={20}
+                        className={`invert dark:invert-0 ${!open && "hidden"}`}
+                    />
+                </Link>
+                <Link
                     href="/laporan/kpi-per-unit-kerja"
-                    icon={"chat"}
+                    className="flex  justify-between bg-gray-100 dark:bg-gray-400 hover:bg-gray-200 rounded-md p-2 cursor-pointer  text-black text-sm items-center gap-x-4 mt-2 "
                 >
-                    Kpi per Unit Kerja
-                </LinkItem>
-                <LinkItem
-                    path={path}
-                    open={open}
+                    <span
+                        className={`${
+                            !open && "hidden"
+                        } origin-left duration-200`}
+                    >
+                        Kpi per Unit Kerja
+                    </span>
+                    <Image
+                        src="/assets/chat.png"
+                        alt="Picture of the author"
+                        width={20}
+                        height={20}
+                        className={`invert dark:invert-0 ${!open && "hidden"}`}
+                    />
+                </Link>
+                <Link
                     href="/laporan/kpi-per-staf"
-                    icon={"chat"}
+                    className="flex  justify-between bg-gray-100 dark:bg-gray-400 hover:bg-gray-200 rounded-md p-2 cursor-pointer  text-black text-sm items-center gap-x-4 mt-2 "
                 >
-                    Kpi per Staf
-                </LinkItem>
+                    <span
+                        className={`${
+                            !open && "hidden"
+                        } origin-left duration-200`}
+                    >
+                        Kpi per staf
+                    </span>
+                    <Image
+                        src="/assets/chat.png"
+                        alt="Picture of the author"
+                        width={20}
+                        height={20}
+                        className={`invert dark:invert-0 ${!open && "hidden"}`}
+                    />
+                </Link>
             </ul>
-            <Link
-                href={"/akun"}
+            <li
                 className={`flex  rounded-md p-2 cursor-pointer hover:bg-gray-300 text-black  text-sm items-center gap-x-4 
               mt-9  ${open && "bg-gray-200 dark:bg-gray-500"}`}
             >
@@ -404,7 +448,7 @@ const SubSidebar = ({ open, path }) => {
                 >
                     Acount
                 </span>
-            </Link>
+            </li>
             <div
                 className={`w-full flex  ${
                     open && " justify-end p-3"
@@ -434,8 +478,8 @@ const LinkItem = ({ href, path, children, icon, open }) => {
             href={href}
             className={`flex justify-between rounded-md p-2 cursor-pointer  text-black text-sm items-center gap-x-4 mt-2 ${
                 activ
-                    ? "bg-[#9d9c9c] dark:bg-[#eeeded]  "
-                    : "bg-gray-100 hover:bg-gray-200 dark:bg-gray-400 dark:hover:bg-gray-500 "
+                    ? "bg-[#e8e6e6] dark:bg-[#8d8989] hover:bg-gray-100"
+                    : "bg-gray-100 dark:bg-gray-400 hover:bg-gray-200"
             }`}
         >
             <span className={`${!open && "hidden"} origin-left duration-200`}>
@@ -446,33 +490,8 @@ const LinkItem = ({ href, path, children, icon, open }) => {
                 alt="Picture of the author"
                 width={20}
                 height={20}
-                className={` ${
-                    activ ? "invert-0 dark:invert" : "invert dark:invert-0"
-                }  ${!open && "hidden"}`}
+                className={`invert dark:invert-0 ${!open && "hidden"}`}
             />
-        </Link>
-    );
-};
-const LinkItemMenu = ({ href, path, children, icon, open }) => {
-    const activ = path === href;
-    return (
-        <Link
-            href="/"
-            className={`flex  rounded-md p-2 cursor-pointer  text-black  text-sm items-center gap-x-4 
-              mt-2  ${
-                  open && "bg-gray-200 dark:bg-gray-500 hover:bg-gray-300"
-              }`}
-        >
-            <Image
-                src={`/assets/${icon}.png`}
-                alt="Picture of the author"
-                width={20}
-                height={20}
-                className="invert dark:invert-0"
-            />
-            <span className={`${!open && "hidden"} origin-left duration-200`}>
-                {children}
-            </span>
         </Link>
     );
 };
