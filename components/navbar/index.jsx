@@ -189,7 +189,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/organisasi/profil-organisasi"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Profil Organisasi
                 </LinkItem>
@@ -198,7 +198,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/organisasi/kantor"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Kantor
                 </LinkItem>
@@ -206,7 +206,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/organisasi/unit-kerja"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Unit Kerja
                 </LinkItem>
@@ -215,7 +215,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/organisasi/staf"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Staf
                 </LinkItem>
@@ -266,7 +266,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/project/papan-aktivitas"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Papan Aktivitas
                 </LinkItem>
@@ -274,7 +274,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/project/project"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Project
                 </LinkItem>
@@ -283,7 +283,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/project/ajuan-project"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Ajuan Project
                 </LinkItem>
@@ -291,7 +291,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/project/ajuan-extend-project"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Ajuan Extend Project
                 </LinkItem>
@@ -342,7 +342,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/laporan/timeline-project-task"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Timeline Project/Task
                 </LinkItem>
@@ -350,7 +350,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/laporan/progres-project"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Progres Project
                 </LinkItem>
@@ -358,7 +358,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/laporan/progres-task"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Progres Task
                 </LinkItem>
@@ -366,7 +366,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/laporan/kendala"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Kendala
                 </LinkItem>
@@ -374,7 +374,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/laporan/kpi-per-unit-kerja"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Kpi per Unit Kerja
                 </LinkItem>
@@ -382,7 +382,7 @@ const SubSidebar = ({ open, path }) => {
                     path={path}
                     open={open}
                     href="/laporan/kpi-per-staf"
-                    icon={"chat"}
+                    icon={"Chat"}
                 >
                     Kpi per Staf
                 </LinkItem>
@@ -393,7 +393,7 @@ const SubSidebar = ({ open, path }) => {
               mt-9  ${open && "bg-gray-200 dark:bg-gray-500"}`}
             >
                 <Image
-                    src="/assets/user.png"
+                    src="/assets/User.png"
                     alt="Picture of the author"
                     width={20}
                     height={20}
